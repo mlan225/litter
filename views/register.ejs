@@ -1,0 +1,20 @@
+<%- include partials/login-header.ejs %>
+
+<div class="login-page login-body">
+  <div class="form">
+    <h1>Sign Up</h1>
+    <form class="login-form" action="/register" method="POST"> 
+      <p>You will be using email for your login</p>     
+      <input type="email" name="username" placeholder="Email"/>
+      <input type="text" name="handle" placeholder="Account Handle (Profile Alias)">
+      <input type="text" name="first_name" placeholder="First Name">
+      <input type="text" name="last_name" placeholder="Last Name">
+      <input type="password" name="password" placeholder="Password"/>
+      <input type="password" name="confirm_password" placeholder="Confirm Password"/>
+      <button>Create Account!</button>
+      <p class="message">Already have an account? Log in <a href="/login">Here</a></p>
+    </form>
+  </div>
+</div>
+
+<%- include partials/login-footer.ejs %>

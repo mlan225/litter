@@ -1,0 +1,92 @@
+<%- include partials/header.ejs %>
+
+<!--main content-->
+<div class="main-content news-feed">
+  <div class="container">
+    <div class="row">
+      <div class="content col-md-8 col-sm-12 col-xs-12">
+        <div class="section-block">
+          <div role="tabpanel" class="tab-pane active" id="about">
+            <div class="new-post-section">
+              <h1 class="section-title">Speak your mind!</h1>
+              <textarea></textarea>
+              <div class="post-btn">
+                <btn class="btn btn-reward">Post</btn>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-block">
+          <div role="tabpanel" class="tab-pane active" id="about">
+            <div class="post">
+              <div class="post-head">
+                <a href="#"><div class="user-img"></div></a>
+                <div class="user-name">
+                  <a href="#"><h3 class="section-title">Test Post</h3></a>
+                </div>
+              </div>
+              <div class="post-body">
+                Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
+                tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/tabs-->
+      <!--/main content-->
+      <!--sidebar-->
+      <div class="content col-md-4 col-sm-12 col-xs-12">
+        <div class="section-block summary">
+          <h1 class="section-title">Test User</h1>
+          <div class="profile-contents">
+            <h2 class="position">Short user bio section</h2>
+            <img src="assets/img/profile-img.jpg" class="profile-image img responsive" alt="John Doe">
+            <!--/social links-->
+            <a href="#" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
+          </div>
+        </div>
+        <div class="section-block">
+          <h1 class="section-title">What your friends are up to...</h1>
+          <!--reward blocks-->
+          <div class="reward-block">
+            <h3>$10</h3>
+            <h2>Early Bird</h2>
+            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
+              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
+            <span><i class="fa fa-users"></i> 180 backers</span>
+            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+          </div>
+          <div class="reward-block popular">
+            <h3>$20</h3>
+            <h2>Value Bird</h2>
+            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
+              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
+            <span><i class="fa fa-users"></i> 320 backers</span>
+            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+          </div>
+          <div class="reward-block">
+            <h3>$30</h3>
+            <h2>Super Bird</h2>
+            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
+              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
+            <span><i class="fa fa-users"></i> 105 backers</span>
+            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+          </div>
+          <div class="reward-block last">
+            <h3>$50</h3>
+            <h2>Premium Bird</h2>
+            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
+              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
+            <span><i class="fa fa-users"></i> 64 backers</span>
+            <a href="" class="btn btn-reward">GET THIS REWARD</a>
+          </div>
+          <!--/reward blocks-->
+        </div>
+      </div>
+      <!--/sidebar-->
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer.ejs %>
