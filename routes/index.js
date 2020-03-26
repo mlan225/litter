@@ -3,14 +3,10 @@ var express = require('express');
 var router = express.Router();
 
 
-/* GET home page. */
 router.get('/', isLoggedIn, function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { 
+    user: req.user
+  });
 });
-
-router.get('/account/edit', isLoggedIn, function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 
 module.exports = router;

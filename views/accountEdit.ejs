@@ -1,0 +1,33 @@
+<%- include partials/header.ejs %>
+
+<!--main content-->
+<div class="main-content news-feed">
+  <div class="container">
+    <div class="row">
+      <form class="account-edit-form" action="/account/<%= user._id %>/edit" method="POST">
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>Account Name</label>
+          <input type="text" value="<%= user.handle %>" name="handle" class="form-control">
+        </div>
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>First Name</label>
+          <input type="text" name="first_name" value="<%= user.first_name %>" class="form-control">
+        </div>
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>Last Name</label>
+          <input type="text" name="last_name" value="<%= user.last_name %>" class="form-control">
+        </div>
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>Bio</label>
+          <textarea type="text" name="bio" class="form-control"><%= user.bio %></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button class="btn btn-reward">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include partials/login-footer.ejs %>

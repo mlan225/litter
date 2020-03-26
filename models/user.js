@@ -7,7 +7,8 @@ var UsersSchema = new mongoose.Schema({
   first_name: String,
   last_name: String,
   bio: String,
-  profile_image_id: Number,
+  profile_image: String,
+  short_id: String,
 })
 
 // auto add all the needed functions

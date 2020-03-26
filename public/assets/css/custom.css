@@ -7,7 +7,7 @@
   border-radius: 100%;
   width: 100px;
   height: 100px;
-  background: url('/assets/img/prof-pic-1.png');
+  background: url('/assets/img/accountImage1.jpg');
   background-position: center;
   background-size: cover;
 }
@@ -23,4 +23,8 @@
 
 .login-body {
   padding-top: 200px;
+}
+
+.account-edit-form .form-submit {
+  text-align: center;
 }
