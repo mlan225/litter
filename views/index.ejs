@@ -38,12 +38,12 @@
       <!--sidebar-->
       <div class="content col-md-4 col-sm-12 col-xs-12">
         <div class="section-block summary">
-          <h1 class="section-title"><%= user.handle %></h1>
+          <h1 class="section-title"><%= currentUser.handle %></h1>
           <div class="profile-contents">
-            <h2 class="position"><%= user.bio %></h2>
-            <img src="<%= user.profile_image %>" class="profile-image img responsive" alt="John Doe">
+            <h2 class="position"><%= currentUser.bio %></h2>
+            <div class="account-image" style="background-image: url('<%= currentUser.profile_image %>')"></div> 
             <!--/social links-->
-            <a href="/account/view/<%= user._id %>" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
+            <a href="/account/<%= currentUser.short_id %>/view" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
           </div>
         </div>
         <div class="section-block">

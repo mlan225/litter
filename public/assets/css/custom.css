@@ -12,6 +12,16 @@
   background-size: cover;
 }
 
+.profile-contents .account-image {
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  margin: auto;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+}
+
 .post-head {
   display: flex;
   padding-bottom: 25px;
@@ -27,4 +37,63 @@
 
 .account-edit-form .form-submit {
   text-align: center;
+}
+
+.profile-contents .user-name {
+  display: flex;  
+  justify-content: space-evenly;
+}
+
+.account-section .profile-posts {
+  min-height: 400px;
+}
+
+.followers-body {
+  min-height: 850px;
+}
+
+.followers-body .post{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.followers-body .account-btn, .followers-body .post-head {
+  display: flex;
+  align-items: center;
+}
+
+.followers-body .account-btn .btn-contact {
+  margin: 10px;
+}
+
+
+.followers-body .accountSearch {
+  padding: 15px;
+}
+
+.followers-body .account-section .profile-contents .position {
+  text-align: left;
+}
+
+.followers-body .following-account-name {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media(max-width: 772px) {
+  .followers-body .post {
+    flex-direction: column;
+  }
+
+  .followers-body .section-block {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.account-view-btn {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 10px 25px 10px;
 }

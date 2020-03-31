@@ -1,0 +1,29 @@
+<%- include partials/header %>
+
+<div class="followers-body">
+  <div class="row profile-posts">
+    <div class="accountSearch">
+      <form action="/account/search" method="POST">
+        <div class="container">
+          <div class="row">
+            <div class="form-group col-lg-offset-4 col-lg-6 offset-md-4 ">
+              <input class="form-control" name="short_id" placeholder="Search User by short id" type="text">
+            </div>
+            <div class="form-group col-lg-2">
+              <button class="btn btn-contact">Search User</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="section-block container">
+      <div>
+        <h1>
+          No account found with that id...
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer %>

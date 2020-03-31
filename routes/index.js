@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/', isLoggedIn, function(req, res, next) {
   res.render('index', { 
-    user: req.user
+    currentUser: req.user
   });
 });
 

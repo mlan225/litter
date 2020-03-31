@@ -1,0 +1,50 @@
+<%- include partials/header.ejs %>
+
+<div class="account-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="section-block summary">
+          <h1><%= userFound.short_id %></h1>
+          <h1 class="section-title"><%= userFound.handle %></h1>
+          <div class="profile-contents">
+            <div class="account-image" style="background-image: url('<%= userFound.profile_image %>')"></div> 
+            <div class="user-name">
+              <h2><%= userFound.first_name %></h2>
+              <h2><%= userFound.last_name %></h2>
+            </div>
+            <h2 class="position"><%= userFound.bio %></h2>
+          </div>
+        </div>
+        <div class="account-view-btn">
+          <form action="/account/<%= currentUser._id %>/<%= userFound._id %>/follow" method="POST">
+            <input type="hidden" name="follower_id" value="<%= currentUser._id %>" class="btn btn-contact">
+            <input type="hidden" name="following_id" value="<%= userFound._id %>" class="btn btn-contact">
+            <input type="submit" value="Follow" class="btn btn-contact">
+          </form>
+          <a class="btn btn-contact">Block</a>
+        </div>
+      </div>
+    </div>
+    <div class="row profile-posts">
+      <div class="section-block">
+        <div role="tabpanel" class="tab-pane active" id="about">
+          <div class="post">
+            <div class="post-head">
+              <a href="#"><div class="user-img"></div></a>
+              <div class="user-name">
+                <a href="#"><h3 class="section-title">Test Post</h3></a>
+              </div>
+            </div>
+            <div class="post-body">
+              Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
+              tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer.ejs %>

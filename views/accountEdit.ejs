@@ -4,22 +4,22 @@
 <div class="main-content news-feed">
   <div class="container">
     <div class="row">
-      <form class="account-edit-form" action="/account/<%= user._id %>/edit" method="POST">
+      <form class="account-edit-form" action="/account/<%= currentUser._id %>/edit" method="POST">
         <div class="form-group col-lg-12 col-md-12 col-md-12">
           <label>Account Name</label>
-          <input type="text" value="<%= user.handle %>" name="handle" class="form-control">
+          <input type="text" value="<%= currentUser.handle %>" name="handle" class="form-control">
         </div>
         <div class="form-group col-lg-12 col-md-12 col-md-12">
           <label>First Name</label>
-          <input type="text" name="first_name" value="<%= user.first_name %>" class="form-control">
+          <input type="text" name="first_name" value="<%= currentUser.first_name %>" class="form-control">
         </div>
         <div class="form-group col-lg-12 col-md-12 col-md-12">
           <label>Last Name</label>
-          <input type="text" name="last_name" value="<%= user.last_name %>" class="form-control">
+          <input type="text" name="last_name" value="<%= currentUser.last_name %>" class="form-control">
         </div>
         <div class="form-group col-lg-12 col-md-12 col-md-12">
           <label>Bio</label>
-          <textarea type="text" name="bio" class="form-control"><%= user.bio %></textarea>
+          <textarea type="text" name="bio" class="form-control"><%= currentUser.bio %></textarea>
         </div>
 
         <div class="form-submit">
