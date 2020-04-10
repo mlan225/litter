@@ -1,11 +1,12 @@
 var User = require('../models/user');
+var Follow = require('../models/follow');
 
 function getAccountInfo(follow) {
 
   console.log(follow)
 
   return new Promise(resolve => {
-    User.findOne({'_id': follow}, function(err, userFound){
+    User.findOne({'short_id': follow}, function(err, userFound){
       if(err) return console.log(err)
       if(!userFound) return;
 
@@ -21,6 +22,33 @@ function getAccountInfo(follow) {
   })
 }
 
+var findUserForView = function(accountShortId) {
+  return new Promise(resolve => {
+    User.findOne({'short_id': accountShortId}, (err, userFound) => {
+      if(err) {console.log(err)}
+      
+      resolve(userFound)
+    })
+  })
+}
+
+var doesUserFollow = function(currentUserShortId, accountShortId){
+  return new Promise(resolve => {
+    Follow.findOne({"followerShortId": currentUserShortId, "followingShortId": accountShortId}, (err, followedUser) => {
+      if(err) {console.log(err)}
+
+      if(!followedUser) {
+        resolve(false)
+      } else {
+        resolve(true)
+      } 
+    })
+  })
+}
+
+
 module.exports = {
-  getAccountInfo
+  getAccountInfo,
+  findUserForView,
+  doesUserFollow
 }

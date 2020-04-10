@@ -16,14 +16,25 @@
             <h2 class="position"><%= userFound.bio %></h2>
           </div>
         </div>
-        <div class="account-view-btn">
-          <form action="/account/<%= currentUser._id %>/<%= userFound._id %>/follow" method="POST">
-            <input type="hidden" name="follower_id" value="<%= currentUser._id %>" class="btn btn-contact">
-            <input type="hidden" name="following_id" value="<%= userFound._id %>" class="btn btn-contact">
-            <input type="submit" value="Follow" class="btn btn-contact">
-          </form>
-          <a class="btn btn-contact">Block</a>
-        </div>
+        <!-- Display the follow / block options if the user is not the current user or added previously -->
+        <% if(currentUser.short_id !== userFound.short_id){ %>
+          <div class="account-view-btn">
+            <% if(userFollows) { %>
+              <form action="/account/<%= currentUser.short_id %>/<%= userFound.short_id %>/Unfollow" method="POST">
+                <input type="hidden" name="follower_id" value="<%= currentUser._id %>" class="btn btn-contact">
+                <input type="hidden" name="following_id" value="<%= userFound._id %>" class="btn btn-contact">
+                <input type="submit" value="Unfollow" class="btn btn-contact">
+              </form>
+            <% } else { %>
+              <form action="/account/<%= currentUser.short_id %>/<%= userFound.short_id %>/follow" method="POST">
+                <input type="hidden" name="followerShortId" value="<%= currentUser.short_id %>" class="btn btn-contact">
+                <input type="hidden" name="followingShortId" value="<%= userFound.short_id %>" class="btn btn-contact">
+                <input type="submit" value="Follow" class="btn btn-contact">
+              </form>
+            <% } %>
+            <a class="btn btn-contact">Block</a>
+          </div>
+        <% } %>
       </div>
     </div>
     <div class="row profile-posts">

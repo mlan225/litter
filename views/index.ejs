@@ -7,31 +7,40 @@
       <div class="content col-md-8 col-sm-12 col-xs-12">
         <div class="section-block">
           <div role="tabpanel" class="tab-pane active" id="about">
-            <div class="new-post-section">
-              <h1 class="section-title">Speak your mind!</h1>
-              <textarea></textarea>
-              <div class="post-btn">
-                <btn class="btn btn-reward">Post</btn>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section-block">
-          <div role="tabpanel" class="tab-pane active" id="about">
-            <div class="post">
-              <div class="post-head">
-                <a href="#"><div class="user-img"></div></a>
-                <div class="user-name">
-                  <a href="#"><h3 class="section-title">Test Post</h3></a>
+            <form action="/post/create/" method="POST">
+              <div class="new-post-section">
+                <h1 class="section-title">Speak your mind!</h1>
+                <div class="form-group">
+                  <input class="form-control postText" type="text" name="message">
+                </div>
+                <input type="hidden" value="<%= currentUser.handle %>" name="author">
+                <input type="hidden" value="<%= currentUser.short_id %>" name="authorShortId">
+                <input type="hidden" value="<%= currentUser.profile_image %>" name="authorProfileImage">
+                <div class="post-btn">
+                  <input type="submit" value="Post" class="btn btn-reward">
                 </div>
               </div>
-              <div class="post-body">
-                Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
-                tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+            </form>
+          </div>
+        </div>
+        
+          <div class="section-block">
+            <div role="tabpanel" class="tab-pane active" id="about">
+              <div class="post">
+                <div class="post-head">
+                  <a href="#"><div class="user-img"></div></a>
+                  <div class="user-name">
+                    <a href="#"><h3 class="section-title">Test Post</h3></a>
+                  </div>
+                </div>
+                <div class="post-body">
+                  Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
+                  tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
       <!--/tabs-->
       <!--/main content-->

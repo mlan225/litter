@@ -32,9 +32,9 @@
             </div>
             <div class="account-btn">
               <a href="/account/<%= user.short_id %>/view" class="btn btn-contact">View Profile</a>
-              <form action="/account/<%= currentUser._id %>/<%= user._id %>/unfollow" method="POST">
-                <input type="hidden" name="follower_id" value="<%= currentUser._id %>" class="btn btn-contact">
-                <input type="hidden" name="following_id" value="<%= user._id %>" class="btn btn-contact">
+              <form action="/account/<%= currentUser.short_id %>/<%= user.short_id %>/unfollow" method="POST">
+                <input type="hidden" name="followerShortId" value="<%= currentUser.short_id %>" class="btn btn-contact">
+                <input type="hidden" name="followingShortId" value="<%= user.short_id %>" class="btn btn-contact">
                 <input type="submit" value="Unfollow" class="btn btn-contact">
               </form>
             </div>

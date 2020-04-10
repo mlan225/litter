@@ -12,6 +12,7 @@ var mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
+var postRouter = require('./routes/post');
 
 var User = require('./models/user');
 
@@ -54,6 +55,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/dashboard', indexRouter);
 app.use('/', authRouter);
 app.use('/account', accountRouter);
+app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
