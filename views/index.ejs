@@ -1,5 +1,6 @@
 <%- include partials/header.ejs %>
 
+
 <!--main content-->
 <div class="main-content news-feed">
   <div class="container">
@@ -22,25 +23,51 @@
               </div>
             </form>
           </div>
+      </div>
+        <div class="morePostsOptions">
+          <form action="/dashboard/more" method="POST">
+          <div class="morePostsBtn">
+            <div>
+              <div>
+                <p>Display
+                  <select name="postCounter">
+                    <option value="25" <%= postCounter == 25 ? 'selected' : '' %> >25</option>
+                    <option value="50" <%= postCounter == 50 ? 'selected' : '' %> >50</option>
+                    <option value="75" <%= postCounter == 75 ? 'selected' : '' %> >75</option>
+                    <option value="100" <%= postCounter == 100 ? 'selected' : '' %> >100</option>
+                  </select>
+                  most recent posts</p>
+                </div>
+            </div>
+            
+            <div>
+              <input type="submit" class="btn btn-reward">
+            </div>
+          </div>
+          </form>
         </div>
-        
+        <div class="posts-section">
+          <% posts.forEach(function(post) { %>
           <div class="section-block">
             <div role="tabpanel" class="tab-pane active" id="about">
               <div class="post">
                 <div class="post-head">
-                  <a href="#"><div class="user-img"></div></a>
+                  <a href="#"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
                   <div class="user-name">
-                    <a href="#"><h3 class="section-title">Test Post</h3></a>
+                    <a href="#"><h3 class="section-title"><%= post.author %></h3></a>
                   </div>
                 </div>
                 <div class="post-body">
-                  Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
-                  tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+                  <div><%= post.message %></div>
+                  <div>
+                    <p><%= moment(post.messageDate).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        
+          <% }) %>
+        </div>
       </div>
       <!--/tabs-->
       <!--/main content-->
@@ -55,43 +82,7 @@
             <a href="/account/<%= currentUser.short_id %>/view" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
           </div>
         </div>
-        <div class="section-block">
-          <h1 class="section-title">What your friends are up to...</h1>
-          <!--reward blocks-->
-          <div class="reward-block">
-            <h3>$10</h3>
-            <h2>Early Bird</h2>
-            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
-              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
-            <span><i class="fa fa-users"></i> 180 backers</span>
-            <a href="" class="btn btn-reward">GET THIS REWARD</a>
-          </div>
-          <div class="reward-block popular">
-            <h3>$20</h3>
-            <h2>Value Bird</h2>
-            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
-              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
-            <span><i class="fa fa-users"></i> 320 backers</span>
-            <a href="" class="btn btn-reward">GET THIS REWARD</a>
-          </div>
-          <div class="reward-block">
-            <h3>$30</h3>
-            <h2>Super Bird</h2>
-            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
-              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
-            <span><i class="fa fa-users"></i> 105 backers</span>
-            <a href="" class="btn btn-reward">GET THIS REWARD</a>
-          </div>
-          <div class="reward-block last">
-            <h3>$50</h3>
-            <h2>Premium Bird</h2>
-            <p>Curabitur accumsan sem sed velit ultrices fermentum. Pellentesque rutrum mi nec ipsum elementum aliquet.
-              Sed id vestibulum eros. Nullam nunc velit, viverra sed consequat ac, pulvinar in metus.</p>
-            <span><i class="fa fa-users"></i> 64 backers</span>
-            <a href="" class="btn btn-reward">GET THIS REWARD</a>
-          </div>
-          <!--/reward blocks-->
-        </div>
+        <!-- underneath account area is located in the partials for now as "friends_activity" -->
       </div>
       <!--/sidebar-->
     </div>

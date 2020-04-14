@@ -8,14 +8,14 @@ var Post = require('../models/post');
 
 //create post
 router.post('/create', isLoggedIn, function(req, res){
-  var currentFormatDate = moment().format("dddd, MMMM Do YYYY, h:mm:ss a"); // "Sunday, February 14th 2010, 3:25:50 pm"
+  var currentFormatDate = moment();
 
   var postObj = new Post ({
     author: req.body.author,
     authorShortId: req.body.authorShortId,
     authorProfileImage: req.body.authorProfileImage,
     message: req.body.message,
-    messagDate: currentFormatDate,
+    messageDate: currentFormatDate,
   })
 
   postObj.save(function(err, post) {

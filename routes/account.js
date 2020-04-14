@@ -3,7 +3,10 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Follow = require('../models/follow');
+const moment = require('moment')
+
 var { getAccountInfo, findUserForView, doesUserFollow } = require('../controllers/accountController');
+var {getAllUserPosts} = require('../controllers/postController');
 
 router.get('/:id/edit', isLoggedIn, function(req, res, next) {
   res.render('accountEdit', { 
@@ -53,8 +56,41 @@ router.get('/:short_id/view', isLoggedIn, async function(req, res, next){
     console.log('doesUserFollow function returns: ' + userFollows)
   }
 
-  res.render('accountView', {userFound: userForView, currentUser: req.user, userFollows})
+  var userPosts = await getAllUserPosts(req.params.short_id)
+
+  res.render('accountView', 
+  {
+    userFound: userForView, 
+    currentUser: req.user, 
+    userFollows, 
+    userPosts,
+    moment,
+    postCounter: 25,
+  })
 })
+
+// DEV NOTE: repeated code with retrieving user posts
+router.post('/:short_id/view/more', isLoggedIn, async function(req, res, next){  
+
+  var userForView = await findUserForView(req.params.short_id);
+  if(userForView.short_id !== req.user.short_id) {
+    var userFollows = await doesUserFollow(req.user.short_id, req.params.short_id);
+    console.log('doesUserFollow function returns: ' + userFollows)
+  }
+
+  var userPosts = await getAllUserPosts(req.params.short_id)
+
+  res.render('accountView', 
+  {
+    userFound: userForView, 
+    currentUser: req.user, 
+    userFollows, 
+    userPosts: userPosts.slice(userPosts.length - req.body.postCounter),
+    moment,
+    postCounter: req.body.postCounter,
+  })
+})
+
 
 router.post('/search', isLoggedIn, async function(req, res) {
 

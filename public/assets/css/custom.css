@@ -3,6 +3,19 @@
    height: 90px;
 }
 
+.morePostsOptions .morePostsBtn {
+  display: flex;
+  padding: 15px;
+  justify-content: space-evenly;
+}
+
+@media(max-width: 520px) {
+  .morePostsOptions .morePostsBtn {
+    text-align: center;
+    display: block;
+  }
+}
+
 .post .user-img {
   border-radius: 100%;
   width: 100px;

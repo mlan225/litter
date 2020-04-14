@@ -5,7 +5,7 @@ var PostSchema = new mongoose.Schema({
   authorShortId: String,
   authorProfileImage: String,
   message: String,
-  messagDate: String,
+  messageDate: String,
 })
 
 module.exports = mongoose.model('Post', PostSchema);

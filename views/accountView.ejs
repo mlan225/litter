@@ -32,28 +32,55 @@
                 <input type="submit" value="Follow" class="btn btn-contact">
               </form>
             <% } %>
-            <a class="btn btn-contact">Block</a>
+            <!-- DEV NOTE: add block functionality -->
+            <!-- <a class="btn btn-contact">Block</a> -->
           </div>
         <% } %>
       </div>
     </div>
-    <div class="row profile-posts">
-      <div class="section-block">
-        <div role="tabpanel" class="tab-pane active" id="about">
-          <div class="post">
-            <div class="post-head">
-              <a href="#"><div class="user-img"></div></a>
-              <div class="user-name">
-                <a href="#"><h3 class="section-title">Test Post</h3></a>
-              </div>
+    <div class="morePostsOptions">
+      <form action="/account/<%= currentUser.short_id %>/view/more" method="POST">
+      <div class="morePostsBtn">
+        <div>
+          <div>
+            <p>Display
+              <select name="postCounter">
+                <option value="25" <%= postCounter == 25 ? 'selected' : '' %> >25</option>
+                <option value="50" <%= postCounter == 50 ? 'selected' : '' %> >50</option>
+                <option value="75" <%= postCounter == 75 ? 'selected' : '' %> >75</option>
+                <option value="100" <%= postCounter == 100 ? 'selected' : '' %> >100</option>
+              </select>
+              most recent posts</p>
             </div>
-            <div class="post-body">
-              Vivamus quis mi. Pellentesque posuere. Praesent ac massa at ligula laoreet iaculis. Aenean posuere,
-              tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
+        </div>
+        
+        <div>
+          <input type="submit" class="btn btn-reward">
+        </div>
+      </div>
+      </form>
+    </div>
+    <div class="row profile-posts">
+      <% userPosts.forEach(function(post) { %>
+        <div class="section-block">
+          <div role="tabpanel" class="tab-pane active" id="about">
+            <div class="post">
+              <div class="post-head">
+                <a href="#"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
+                <div class="user-name">
+                  <a href="#"><h3 class="section-title"><%= post.author %></h3></a>
+                </div>
+              </div>
+              <div class="post-body">
+                <div><%= post.message %></div>
+                <div>
+                  <p><%= moment(post.messageDate).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+        <% }) %>
     </div>
   </div>
 </div>
