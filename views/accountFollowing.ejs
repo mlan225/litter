@@ -1,6 +1,6 @@
 <%- include partials/header %>
 
-<div class="followers-body">
+<div class="followers-body container">
   <div class="row profile-posts">
     <div class="accountSearch">
       <form action="/account/search" method="POST">
@@ -35,7 +35,9 @@
               <form action="/account/<%= currentUser.short_id %>/<%= user.short_id %>/unfollow" method="POST">
                 <input type="hidden" name="followerShortId" value="<%= currentUser.short_id %>" class="btn btn-contact">
                 <input type="hidden" name="followingShortId" value="<%= user.short_id %>" class="btn btn-contact">
-                <input type="submit" value="Unfollow" class="btn btn-contact">
+                <% if(!user.is_moderator) { %>
+                  <input type="submit" value="Unfollow" class="btn btn-contact">
+                <% } %>
               </form>
             </div>
           </div>

@@ -6,6 +6,7 @@ var PostSchema = new mongoose.Schema({
   authorProfileImage: String,
   message: String,
   messageDate: String,
+  isModPost: Boolean,
 })
 
 module.exports = mongoose.model('Post', PostSchema);

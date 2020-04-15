@@ -1,3 +1,12 @@
+a:hover, a:active, a:focus{
+  color:#55a26a;
+  text-decoration: none;
+}
+
+.main-content.news-feed {
+  min-height: 850px;
+}
+
 .new-post-section textarea {
   width: 100%;
    height: 90px;
@@ -16,6 +25,20 @@
   }
 }
 
+.all-mod-posts {
+  padding: 0 0 15px 0;
+}
+
+.mod-post .section-title {
+  background: none;
+  color: #777777;
+  font-size: 25px;
+}
+
+.mod-updates-section .section-title {
+  color: #99deab;
+}
+
 .post .user-img {
   border-radius: 100%;
   width: 100px;
@@ -23,6 +46,25 @@
   background: url('/assets/img/accountImage1.jpg');
   background-position: center;
   background-size: cover;
+}
+
+.section-block.mod-post {
+  border: 5px solid #99deab;
+  background: #99deab3d
+}
+
+@media(max-width: 767px) {
+  .section-block .post-head {
+    display: block;
+  }
+  
+  .section-block .post-head .user-img {
+    margin: auto;
+  }
+
+  .section-block .section-title {
+    margin: auto;
+  }
 }
 
 .profile-contents .account-image {
@@ -40,8 +82,22 @@
   padding-bottom: 25px;
 }
 
+.posts-section .section-block {
+  position: relative;
+}
+
+.posts-section .post-delete {
+  position: absolute;
+  right: 30px;
+  top: 15px;
+}
+
 .post-head .user-name {
   padding-left: 15px;  
+}
+
+.post .post-body .post-text {
+  padding-bottom: 15px;
 }
 
 .new-post-section .postText {

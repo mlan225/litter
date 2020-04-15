@@ -16,7 +16,8 @@ function getAccountInfo(follow) {
         first_name: userFound.first_name,
         last_name: userFound.last_name,
         profile_image: userFound.profile_image,
-        short_id: userFound.short_id
+        short_id: userFound.short_id,
+        is_moderator: userFound.is_moderator,
       })
     })
   })

@@ -24,6 +24,9 @@ var getAllRelevantPosts = function(currentUser) {
 
         console.log('posts from current user')
         console.log(currentUserPosts)
+
+        if(currentUserPosts.length == 0) { resolve() }
+
         for(let index = 0; index < currentUserPosts.length; index++) {
           await pushPostsToArray(currentUserPosts[index]);
           resolve();
@@ -58,9 +61,10 @@ var getAllRelevantPosts = function(currentUser) {
       var getPostsFromUser = async function(followedUserShortId) {
         console.log('Preparing to find user posts with short id: ' + followedUserShortId)
       
-        var findUserWithShortId = async function(err, user) {
+        var findUserWithShortId = function(shortId) {
           return new Promise(resolve => {
-            User.findOne({'short_id': followedUserShortId}, function(err, user){
+            User.findOne({'short_id': shortId}, function(err, user){
+              if(err) { resolve(err) }
               resolve(user.short_id)
             })
           })
@@ -69,6 +73,12 @@ var getAllRelevantPosts = function(currentUser) {
         var findPostsWithShortId = async function(shortId) {
           return new Promise(resolve => {
             Post.find({'authorShortId': shortId}, async function(err, posts){
+              if(err) { resolve(err) }
+
+              if(posts.length == 0) {
+                resolve();
+              }
+
               for(let j_index = 0; j_index < posts.length; j_index++) {
                 await pushPostsToArray(posts[j_index]);
                 resolve();
@@ -83,7 +93,9 @@ var getAllRelevantPosts = function(currentUser) {
       }
 
       await asyncFollowingUsersLoop(foundUsers)
+
       const sortedPostsByDate = postsFromFollowedUsers.sort((a,b) => new moment(a.messageDate) - new moment(b.messageDate))
+     
       resolve(sortedPostsByDate.reverse());
     })
   })
@@ -94,11 +106,14 @@ var getAllRelevantPosts = function(currentUser) {
 var getAllUserPosts = function(userShortId) {
   return new Promise(resolve => {
     Post.find({'authorShortId': userShortId}, async function(err, posts){
+      if(posts.length == 0) {
+        // DEV NOTE: returning empty array for no posts found. Will error out when running array checks on no results
+        resolve([]);
+      }
       resolve(posts.sort((a,b) => new moment(a.messageDate) - new moment(b.messageDate)))
     })
   })
 }
-
 
 module.exports = {
   getAllRelevantPosts,

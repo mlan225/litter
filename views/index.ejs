@@ -35,6 +35,7 @@
                     <option value="50" <%= postCounter == 50 ? 'selected' : '' %> >50</option>
                     <option value="75" <%= postCounter == 75 ? 'selected' : '' %> >75</option>
                     <option value="100" <%= postCounter == 100 ? 'selected' : '' %> >100</option>
+                    <option value="all" <%= postCounter == 'all' ? 'selected' : '' %> >All</option>
                   </select>
                   most recent posts</p>
                 </div>
@@ -48,17 +49,25 @@
         </div>
         <div class="posts-section">
           <% posts.forEach(function(post) { %>
-          <div class="section-block">
+          <div class="section-block <%= post.isModPost ? 'mod-post' : '' %>">
+            <% if(post.authorShortId == currentUser.short_id) { %>
+              <div class="post-delete">
+                <form action="/post/delete" method="POST">
+                  <input type="hidden" value="<%= post._id %>" name="post_id">
+                  <button><i class="fa fa-trash"></i></a></button>
+                </form>
+              </div>
+            <% } %>
             <div role="tabpanel" class="tab-pane active" id="about">
               <div class="post">
                 <div class="post-head">
-                  <a href="#"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
+                  <a href="/account/<%= post.authorShortId %>/view"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
                   <div class="user-name">
-                    <a href="#"><h3 class="section-title"><%= post.author %></h3></a>
+                    <a href="/account/<%= post.authorShortId %>/view"><h3 class="section-title"><%= post.author %></h3></a>
                   </div>
                 </div>
                 <div class="post-body">
-                  <div><%= post.message %></div>
+                  <div class="post-text"><%= post.message %></div>
                   <div>
                     <p><%= moment(post.messageDate).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
                   </div>
@@ -82,7 +91,7 @@
             <a href="/account/<%= currentUser.short_id %>/view" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
           </div>
         </div>
-        <!-- underneath account area is located in the partials for now as "friends_activity" -->
+        <%- include('partials/mod-activity.ejs', {modPosts}) %>
       </div>
       <!--/sidebar-->
     </div>

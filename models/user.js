@@ -9,6 +9,7 @@ var UsersSchema = new mongoose.Schema({
   bio: String,
   profile_image: String,
   short_id: String,
+  is_moderator: Boolean,
 })
 
 // auto add all the needed functions

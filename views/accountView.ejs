@@ -17,7 +17,7 @@
           </div>
         </div>
         <!-- Display the follow / block options if the user is not the current user or added previously -->
-        <% if(currentUser.short_id !== userFound.short_id){ %>
+        <% if(currentUser.short_id !== userFound.short_id && !userFound.is_moderator){ %>
           <div class="account-view-btn">
             <% if(userFollows) { %>
               <form action="/account/<%= currentUser.short_id %>/<%= userFound.short_id %>/Unfollow" method="POST">
@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="morePostsOptions">
-      <form action="/account/<%= currentUser.short_id %>/view/more" method="POST">
+      <form action="/account/<%= userFound.short_id %>/view/more" method="POST">
       <div class="morePostsBtn">
         <div>
           <div>
@@ -49,6 +49,7 @@
                 <option value="50" <%= postCounter == 50 ? 'selected' : '' %> >50</option>
                 <option value="75" <%= postCounter == 75 ? 'selected' : '' %> >75</option>
                 <option value="100" <%= postCounter == 100 ? 'selected' : '' %> >100</option>
+                <option value="all" <%= postCounter == 'all' ? 'selected' : '' %> >All</option>
               </select>
               most recent posts</p>
             </div>
@@ -66,13 +67,13 @@
           <div role="tabpanel" class="tab-pane active" id="about">
             <div class="post">
               <div class="post-head">
-                <a href="#"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
+                <a href="/account/<%= post.authorShortId %>/view"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
                 <div class="user-name">
-                  <a href="#"><h3 class="section-title"><%= post.author %></h3></a>
+                  <a href="/account/<%= post.authorShortId %>/view"><h3 class="section-title"><%= post.author %></h3></a>
                 </div>
               </div>
               <div class="post-body">
-                <div><%= post.message %></div>
+                <div class="post-text"><%= post.message %></div>
                 <div>
                   <p><%= moment(post.messageDate).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
                 </div>
@@ -80,7 +81,7 @@
             </div>
           </div>
         </div>
-        <% }) %>
+      <% }) %>
     </div>
   </div>
 </div>
