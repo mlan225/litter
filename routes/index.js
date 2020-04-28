@@ -6,6 +6,9 @@ var moment = require('moment');
 var {getAllRelevantPosts, getAllUserPosts} = require('../controllers/postController');
 var {getUserRequests, getNumberOfRequests, getNumberOfUsers} = require('../controllers/modController');
 
+router.get('*', isLoggedIn, function(req, res) {
+  res.redirect('/dashboard/');
+});
 
 router.get('/', isLoggedIn, async function(req, res, next) {
 
