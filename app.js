@@ -21,7 +21,7 @@ var app = express();
 
 // for local use, use the localhost mongoose db or your own: mongodb://localhost:27017/litter
 // mongoose config
-mongoose.connect("mongodb://localhost:27017/litter",{ useNewUrlParser : true, useUnifiedTopology: true});
+mongoose.connect(process.env.DB_URI,{ useNewUrlParser : true, useUnifiedTopology: true});
 mongoose.connection.on("error",(err)=>{
     console.log("err",err);
 });
