@@ -17,26 +17,28 @@ var requestRouter = require('./routes/request');
 
 var User = require('./models/user');
 
+var {isLoggedIn} = require('./controllers/middleware');
+
 var app = express();
 
 // for local use, use the localhost mongoose db or your own: mongodb://localhost:27017/litter
 // mongoose config
-// mongoose.connect("mongodb://localhost:27017/litter",{ useNewUrlParser : true, useUnifiedTopology: true});
-// mongoose.connection.on("error",(err)=>{
-//     console.log("err",err);
-// });
-// mongoose.connection.on("connected",(err,res) => {
-//     console.log("mongoose is connected");
-// });
-
-// for mlab use, use the env URI variable
-mongoose.connect("mongodb://admin:7E_64xVqhJS#KVH3@ds255889.mlab.com:55889/litter_db",{ useNewUrlParser : true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/litter",{ useNewUrlParser : true, useUnifiedTopology: true});
 mongoose.connection.on("error",(err)=>{
     console.log("err",err);
 });
 mongoose.connection.on("connected",(err,res) => {
     console.log("mongoose is connected");
 });
+
+// for mlab use, use the env URI variable
+// mongoose.connect("mongodb://admin:7E_64xVqhJS#KVH3@ds255889.mlab.com:55889/litter_db",{ useNewUrlParser : true, useUnifiedTopology: true});
+// mongoose.connection.on("error",(err)=>{
+//     console.log("err",err);
+// });
+// mongoose.connection.on("connected",(err,res) => {
+//     console.log("mongoose is connected");
+// });
 
 
 
@@ -69,6 +71,10 @@ app.use('/', authRouter);
 app.use('/account', accountRouter);
 app.use('/post', postRouter);
 app.use('/request', requestRouter);
+
+app.use('*', isLoggedIn, function(req, res) {
+  res.redirect('/dashboard/');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
