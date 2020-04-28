@@ -1,0 +1,33 @@
+<%- include partials/header.ejs %>
+
+<!--main content-->
+<div class="main-content news-feed">
+  <div class="container">
+    <div class="row">
+      <form class="account-edit-form" action="/request/create" method="POST">
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>What type of request is this?</label>
+          <select name="requestType">
+            <option value="Bug">Bug</option>
+            <option value="Feature">Feature</option>
+          </select>
+        </div>
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>Request Subject</label>
+          <input type="text" name="subject" placeholder="What is the subject of your bug or request?" class="form-control">
+        </div>
+        <div class="form-group col-lg-12 col-md-12 col-md-12">
+          <label>Message</label>
+          <textarea type="text" name="message" class="form-control"></textarea>
+        </div>
+        <input type="hidden" name="handle" value="<%= currentUser.handle %>">
+        <input type="hidden" name="shortId" value="<%= currentUser.short_id %>">
+        <div class="form-submit">
+          <button class="btn btn-reward">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%- include partials/login-footer.ejs %>

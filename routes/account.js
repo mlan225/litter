@@ -5,7 +5,7 @@ var User = require('../models/user');
 var Follow = require('../models/follow');
 const moment = require('moment')
 
-var { getAccountInfo, findUserForView, doesUserFollow } = require('../controllers/accountController');
+var { getAccountInfo, findUserForView, doesUserFollow, updatePostsForChange } = require('../controllers/accountController');
 var {getAllUserPosts} = require('../controllers/postController');
 
 router.get('/:id/edit', isLoggedIn, function(req, res, next) {
@@ -22,6 +22,12 @@ router.post('/:id/edit', isLoggedIn, function(req, res, next) {
     bio: req.body.bio,
   }, {upsert: true}, (err, user) => {
     if(err) { console.log(err); }
+
+
+    //find all posts with old name and change to new name
+    updatePostsForChange(req.body.previousHandle, req.body.handle)
+
+
     res.redirect('/account/' + req.user._id + '/edit')
   })
 })

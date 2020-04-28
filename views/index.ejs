@@ -12,7 +12,7 @@
               <div class="new-post-section">
                 <h1 class="section-title">Speak your mind!</h1>
                 <div class="form-group">
-                  <input class="form-control postText" type="text" name="message">
+                  <textarea class="form-control postText" type="text" name="message"></textarea>
                 </div>
                 <input type="hidden" value="<%= currentUser.handle %>" name="author">
                 <input type="hidden" value="<%= currentUser.short_id %>" name="authorShortId">
@@ -23,51 +23,57 @@
               </div>
             </form>
           </div>
-      </div>
+        </div>
         <div class="morePostsOptions">
           <form action="/dashboard/more" method="POST">
-          <div class="morePostsBtn">
-            <div>
+            <div class="morePostsBtn">
               <div>
-                <p>Display
-                  <select name="postCounter">
-                    <option value="25" <%= postCounter == 25 ? 'selected' : '' %> >25</option>
-                    <option value="50" <%= postCounter == 50 ? 'selected' : '' %> >50</option>
-                    <option value="75" <%= postCounter == 75 ? 'selected' : '' %> >75</option>
-                    <option value="100" <%= postCounter == 100 ? 'selected' : '' %> >100</option>
-                    <option value="all" <%= postCounter == 'all' ? 'selected' : '' %> >All</option>
-                  </select>
-                  most recent posts</p>
+                <div>
+                  <p>Display
+                    <select name="postCounter">
+                      <option value="25" <%= postCounter == 25 ? 'selected' : '' %>>25</option>
+                      <option value="50" <%= postCounter == 50 ? 'selected' : '' %>>50</option>
+                      <option value="75" <%= postCounter == 75 ? 'selected' : '' %>>75</option>
+                      <option value="100" <%= postCounter == 100 ? 'selected' : '' %>>100</option>
+                      <option value="all" <%= postCounter == 'all' ? 'selected' : '' %>>All</option>
+                    </select>
+                    most recent posts</p>
                 </div>
+              </div>
+
+              <div>
+                <input type="submit" class="btn btn-reward">
+              </div>
             </div>
-            
-            <div>
-              <input type="submit" class="btn btn-reward">
-            </div>
-          </div>
           </form>
         </div>
         <div class="posts-section">
           <% posts.forEach(function(post) { %>
           <div class="section-block <%= post.isModPost ? 'mod-post' : '' %>">
             <% if(post.authorShortId == currentUser.short_id) { %>
-              <div class="post-delete">
-                <form action="/post/delete" method="POST">
-                  <input type="hidden" value="<%= post._id %>" name="post_id">
-                  <button><i class="fa fa-trash"></i></a></button>
-                </form>
-              </div>
+            <div class="post-delete">
+              <form action="/post/delete" method="POST">
+                <input type="hidden" value="<%= post._id %>" name="post_id">
+                <button><i class="fa fa-trash"></i></a></button>
+              </form>
+            </div>
             <% } %>
             <div role="tabpanel" class="tab-pane active" id="about">
               <div class="post">
                 <div class="post-head">
-                  <a href="/account/<%= post.authorShortId %>/view"><div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div></a>
+                  <a href="/account/<%= post.authorShortId %>/view">
+                    <div class="user-img" style="background-image: url('<%= post.authorProfileImage %>')"></div>
+                  </a>
                   <div class="user-name">
-                    <a href="/account/<%= post.authorShortId %>/view"><h3 class="section-title"><%= post.author %></h3></a>
+                    <a href="/account/<%= post.authorShortId %>/view">
+                      <h3 class="section-title"><%= post.author %></h3>
+                    </a>
                   </div>
                 </div>
                 <div class="post-body">
-                  <div class="post-text"><%= post.message %></div>
+                  <div class="post-text">
+                    <pre><%= post.message %></pre>
+                  </div>
                   <div>
                     <p><%= moment(post.messageDate).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
                   </div>
@@ -86,9 +92,10 @@
           <h1 class="section-title"><%= currentUser.handle %></h1>
           <div class="profile-contents">
             <h2 class="position"><%= currentUser.bio %></h2>
-            <div class="account-image" style="background-image: url('<%= currentUser.profile_image %>')"></div> 
+            <div class="account-image" style="background-image: url('<%= currentUser.profile_image %>')"></div>
             <!--/social links-->
-            <a href="/account/<%= currentUser.short_id %>/view" class="btn btn-contact"><i class="fa fa-envelope"></i>View Profile</a>
+            <a href="/account/<%= currentUser.short_id %>/view" class="btn btn-contact"><i
+                class="fa fa-user"></i>View Profile</a>
           </div>
         </div>
         <%- include('partials/mod-activity.ejs', {modPosts}) %>

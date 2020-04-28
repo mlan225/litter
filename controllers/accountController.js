@@ -1,5 +1,6 @@
 var User = require('../models/user');
 var Follow = require('../models/follow');
+var Post = require('../models/post');
 
 function getAccountInfo(follow) {
 
@@ -47,9 +48,52 @@ var doesUserFollow = function(currentUserShortId, accountShortId){
   })
 }
 
+var updatePostsForChange = function(previousHanle, newHandle) {
+
+  console.log('initiating updatepostsforchange')
+
+  var updatePost = function(postId, newPostHandle) {
+    console.log('initiating updatepost to the new handle: ' + newPostHandle)
+    return new Promise(resolve => {
+      Post.findOneAndUpdate({'_id': postId}, {
+        author: newPostHandle
+      }, {upsert: true}, (err, post) => {
+        if(err) { resolve(err); }
+        resolve();
+      })
+    })
+  }
+
+  var updatePostsLoop = async function(posts) {
+    console.log('initiating updatepostloop')
+    for(let index = 0; index < posts.length; index++) {
+      await updatePost(posts[index]._id, newHandle);
+    }
+    return new Promise(resolve => {
+      resolve()
+    })
+  }
+
+  var getPostsByHandle = function(previousHanle) {
+    console.log('initiating getpostsbyhandle')
+    return new Promise(resolve => {
+      Post.find({'author': previousHanle}, function(err, posts) {
+        if(err) {resolve(err);}
+        if(!posts.length > 0) {resolve();}
+        updatePostsLoop(posts)
+        resolve();
+      })
+    })
+     
+
+  }
+
+  getPostsByHandle(previousHanle);
+}
 
 module.exports = {
   getAccountInfo,
   findUserForView,
-  doesUserFollow
+  doesUserFollow,
+  updatePostsForChange,
 }

@@ -19,8 +19,10 @@
         </div>
         <div class="form-group col-lg-12 col-md-12 col-md-12">
           <label>Bio</label>
-          <textarea type="text" name="bio" class="form-control"><%= currentUser.bio %></textarea>
+          <textarea type="text" maxlength="259" name="bio" class="form-control"><%= currentUser.bio %></textarea>
         </div>
+
+        <input type="hidden" name="previousHandle" value="<%= currentUser.handle %>">
 
         <div class="form-submit">
           <button class="btn btn-reward">Submit</button>

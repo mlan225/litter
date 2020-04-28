@@ -171,3 +171,64 @@ a:hover, a:active, a:focus{
   justify-content: space-evenly;
   padding: 15px 10px 25px 10px;
 }
+
+.litterInfo {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.litterInfo h1 {
+  color: #99deab;
+}
+
+.litterInfo > div {
+  text-align: center;
+}
+
+.request-list .request-list-header {
+  text-align: center;
+  color: #4c5456;
+}
+
+.section-block.request-single {
+  min-height: 810px;
+}
+
+.section-block.request-single .post {
+  text-align: left;
+}
+
+.no-requests {
+  text-align: center;
+  padding-top: 25px;
+}
+
+pre {
+  all: initial!important;
+  white-space: pre-wrap!important;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.request-list .post-meta-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.request-list .post-author {
+  display: flex;
+  align-items: center;
+}
+
+.request-list .request-date {
+  padding-top: 15px;
+}
+
+.request-list .delete-request {
+  text-align: right;
+}
+
+@media(max-width: 767px) {
+  .request-list .post-meta-content {
+    display: block;
+  }
+}

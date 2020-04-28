@@ -13,11 +13,13 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var accountRouter = require('./routes/account');
 var postRouter = require('./routes/post');
+var requestRouter = require('./routes/request');
 
 var User = require('./models/user');
 
 var app = express();
 
+// for local use, use the localhost mongoose db or your own: mongodb://localhost:27017/litter
 // mongoose config
 mongoose.connect("mongodb://localhost:27017/litter",{ useNewUrlParser : true, useUnifiedTopology: true});
 mongoose.connection.on("error",(err)=>{
@@ -56,6 +58,7 @@ app.use('/dashboard', indexRouter);
 app.use('/', authRouter);
 app.use('/account', accountRouter);
 app.use('/post', postRouter);
+app.use('/request', requestRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

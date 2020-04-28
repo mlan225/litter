@@ -1,0 +1,35 @@
+<%- include partials/header.ejs %>
+<div class="container"> 
+  <div class="request-list">
+    <div class="request-list-header">
+      <div class="section-block request-single">
+        <div role="tabpanel" class="tab-pane active" id="about">
+          <div class="post">
+            <div class="delete-request">
+              <form action="/request/delete" method="POST">
+                <input type="hidden" name="requestId" value="<%= request._id %>">
+                <button><a><i class="fa fa-trash"></i></a></button>
+              </form>
+            </div>
+            <div class="post-meta-content">
+              <div class="post-subject">
+                <a href="/request/single/view/<%= request._id %>"><h3><%= request.subject %></h3></a>
+              </div>
+              <div class="post-author">
+                <a href=""><%= request.authorHandle %></a>
+              </div>
+            </div>
+            <div class="post-message">
+              <pre><%= request.message %></pre>
+            </div>
+            <div class="request-date">
+              <p><%= moment(request.dateCreated).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer.ejs %>

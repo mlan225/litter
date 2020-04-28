@@ -1,0 +1,90 @@
+<%- include partials/header.ejs %>
+
+<div class="account-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="section-block summary">
+          <h1><%= currentUser.short_id %></h1>
+          <h1 class="section-title"><%= currentUser.handle %></h1>
+          <div class="profile-contents">
+            <div class="account-image" style="background-image: url('<%= currentUser.profile_image %>')"></div> 
+            <div class="user-name">
+              <h2><%= currentUser.first_name %></h2>
+              <h2><%= currentUser.last_name %></h2>
+            </div>
+            <h2 class="position"><%= currentUser.bio %></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="litterInfo">
+      <div class="users-section">
+        <h1><%= numberOfUsers %></h1>
+        <p>User Accounts</p>
+      </div>
+      <div>
+        <h1 class="user-reports"><%= numberOfRequests %></h1>
+        <p>User Requests</p>
+      </div>
+    </div>
+    <div class="section-block">
+      <div role="tabpanel" class="tab-pane active" id="about">
+        <form action="/post/create/" method="POST">
+          <div class="new-post-section">
+            <h1 class="section-title">Create moderator post</h1>
+            <div class="form-group">
+              <textarea class="form-control postText" type="text" name="message"></textarea>
+            </div>
+            <input type="hidden" value="<%= currentUser.handle %>" name="author">
+            <input type="hidden" value="<%= currentUser.short_id %>" name="authorShortId">
+            <input type="hidden" value="<%= currentUser.profile_image %>" name="authorProfileImage">
+            <div class="post-btn">
+              <input type="submit" value="Post" class="btn btn-reward">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row profile-posts">
+      <div class="request-list">
+        <div class="request-list-header">
+          <h3>Request List</h3>
+        </div>        
+        <% if(userRequests.length > 0) { 
+        userRequests.forEach(function(request) { %>
+          <div class="section-block">
+            <div role="tabpanel" class="tab-pane active" id="about">
+              <div class="post">
+                <div class="delete-request">
+                  <form action="/request/delete" method="POST">
+                    <input type="hidden" name="requestId" value="<%= request._id %>">
+                    <button><a><i class="fa fa-trash"></i></a></button>
+                  </form>
+                </div>
+                <div class="post-meta-content">
+                  <div class="post-subject">
+                    <a href="/request/single/view/<%= request._id %>"><h3><%= request.subject %></h3></a>
+                  </div>
+                  <div class="post-author">
+                    <a href=""><%= request.authorHandle %></a>
+                  </div>
+                </div>
+                <div class="post-message">
+                  <%= request.message.substr(0,150) + '...' %>
+                </div>
+                <div class="request-date">
+                  <p><%= moment(request.dateCreated).format('dddd, MMMM Do YYYY, h:mm:ss a') %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% })} else { %>
+          <p class="no-requests">No user requests, good job!</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include partials/footer.ejs %>
