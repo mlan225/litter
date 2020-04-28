@@ -9,6 +9,8 @@ var {getUserRequests, getNumberOfRequests, getNumberOfUsers} = require('../contr
 
 router.get('/', isLoggedIn, async function(req, res, next) {
 
+  console.log('getting the dashboard')
+
   // DEV NOTE: hard coding mod posts to 5 for now this feature can be adjusted for future development
 
   var postCounter = 25;
