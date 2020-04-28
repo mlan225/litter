@@ -30,7 +30,7 @@ var app = express();
 // });
 
 // for mlab use, use the env URI variable
-mongoose.connect("mongodb://admin:7E_64xVqhJS#KVH3@ds255889.mlab.com:55889/litter_db",{ useNewUrlParser : true, useUnifiedTopology: true});
+mongoose.connect(process.env.DB_URI,{ useNewUrlParser : true, useUnifiedTopology: true});
 mongoose.connection.on("error",(err)=>{
     console.log("err",err);
 });
