@@ -21,17 +21,7 @@ var {isLoggedIn} = require('./controllers/middleware');
 
 var app = express();
 
-// for local use, use the localhost mongoose db or your own: mongodb://localhost:27017/litter
-// mongoose config
-// mongoose.connect("mongodb://localhost:27017/litter",{ useNewUrlParser : true, useUnifiedTopology: true});
-// mongoose.connection.on("error",(err)=>{
-//     console.log("err",err);
-// });
-// mongoose.connection.on("connected",(err,res) => {
-//     console.log("mongoose is connected");
-// });
-
-// for mlab use, use the env URI variable
+// for local use, include the db connection string in place of 'process.env.DB'
 mongoose.connect(process.env.DB,{ useNewUrlParser : true, useUnifiedTopology: true});
 mongoose.connection.on("error",(err)=>{
     console.log("err",err);
@@ -39,8 +29,6 @@ mongoose.connection.on("error",(err)=>{
 mongoose.connection.on("connected",(err,res) => {
     console.log("mongoose is connected");
 });
-
-
 
 // passport config
 app.use(require("express-session")({
